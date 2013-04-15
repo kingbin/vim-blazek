@@ -64,3 +64,13 @@ vnoremap <S-F12>   <SID>TrimSpaces<CR>
 
 " Run :FixWhitespace to remove end of line white space.
 command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
+
+
+" Gist Settings por favor
+let g:gist_clip_command = 'putclip' "cygwin copy gist code with '-c' option
+let g:gist_detect_filetype = 1 "capt obvious
+let g:gist_open_browser_after_post = 1
+"let g:gist_show_privates = 1 "show private gists with -l
+let g:gist_post_private = 1 " gists private by default
+
+
