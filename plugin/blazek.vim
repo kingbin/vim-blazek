@@ -72,6 +72,11 @@ vnoremap <S-F12>   <SID>TrimSpaces<CR>
 command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
 
 
+autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#111111
+autocmd BufEnter * match OverLength /\%80v.*/
+
+
+
 " Gist Settings por favor
 let g:gist_clip_command = 'putclip' "cygwin copy gist code with '-c' option
 let g:gist_detect_filetype = 1 "capt obvious
@@ -86,6 +91,9 @@ autocmd vimenter * if !argc() | NERDTree | endif
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+
+
+
 "set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l/%L,%c%V%)\ %P
 
 :set nu
@@ -94,6 +102,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 set hidden
 
 let g:statline_fugitive = 1
+
+
+
+
+
 
 
 ""statusline setup
@@ -266,7 +279,7 @@ let g:statline_fugitive = 1
 "endfunction
 
 
-
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 
 
