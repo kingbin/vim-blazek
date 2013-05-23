@@ -32,6 +32,12 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 "autocmd BufWinLeave * call clearmatches()
 
+
+"execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
+
 function! s:ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
   let oldhlsearch=&hlsearch
@@ -74,4 +80,11 @@ let g:gist_browser_command = 'chrome %URL% &'
 "let g:gist_show_privates = 1 "show private gists with -l
 let g:gist_post_private = 1 " gists private by default
 
+
+"autocmd vimenter * NERDTree
+autocmd vimenter * if !argc() | NERDTree | endif
+map <C-t> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
