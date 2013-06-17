@@ -279,7 +279,7 @@ let g:statline_fugitive = 1
 "endfunction
 
 
-
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 
 
