@@ -25,12 +25,17 @@ vmap <Right> >gv
 
 " Highlight end of line space red
 highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
+match ExtraWhitespace /\s\+$\|\t/
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred guibg=#382424
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$|\t/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$|\t/
 "autocmd BufWinLeave * call clearmatches()
+
+
+":set tabstop=4
+":set shiftwidth=4
+":set expandtab
 
 
 "execute pathogen#infect()
@@ -72,6 +77,11 @@ vnoremap <S-F12>   <SID>TrimSpaces<CR>
 command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
 
 
+autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#111111
+autocmd BufEnter * match OverLength /\%80v.*/
+
+
+
 " Gist Settings por favor
 let g:gist_clip_command = 'putclip' "cygwin copy gist code with '-c' option
 let g:gist_detect_filetype = 1 "capt obvious
@@ -86,6 +96,9 @@ autocmd vimenter * if !argc() | NERDTree | endif
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+
+
+
 "set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l/%L,%c%V%)\ %P
 
 :set nu
@@ -94,6 +107,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 set hidden
 
 let g:statline_fugitive = 1
+
+
+
+
+
 
 
 ""statusline setup
