@@ -27,11 +27,17 @@ vmap <Right> >gv
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$\|\t/
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred guibg=#382424
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$|\t/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$\|\t/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$|\t/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$\|\t/
 "autocmd BufWinLeave * call clearmatches()
 
+"match ExtraWhitespace /\s\+$\|\t/
+"autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred guibg=#382424
+"autocmd BufWinEnter * match ExtraWhitespace /\s\+$|\t/
+"autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"autocmd InsertLeave * match ExtraWhitespace /\s\+$|\t/
+""autocmd BufWinLeave * call clearmatches()
 
 "execute pathogen#infect()
 syntax on
@@ -112,7 +118,7 @@ let g:statline_fugitive = 1
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=1
-let g:syntastic_disabled_filetypes = ['vim']
+let g:syntastic_ignore_files=['.vim$']
 if has('unix')
   let g:syntastic_error_symbol='â~X~E'
   let g:syntastic_style_error_symbol='>'
@@ -124,4 +130,14 @@ else
   let g:syntastic_warning_symbol='.'
   let g:syntastic_style_warning_symbol='>'
 endif
+
+
+set foldlevelstart=1
+set foldmethod=syntax
+
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+"set nofoldenable
+
 
