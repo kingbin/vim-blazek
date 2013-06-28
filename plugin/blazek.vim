@@ -39,6 +39,17 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$\|\t/
 "autocmd InsertLeave * match ExtraWhitespace /\s\+$|\t/
 ""autocmd BufWinLeave * call clearmatches()
 
+"Spell checking toggle w ',s'
+"let mapleader = ","
+"nmap <silent> <leader>s :set spell!<CR>
+
+"Spelling region:
+"set spelllang=en_us
+
+imap <Leader>s <C-o>:setlocal spell! spelllang=en_gb<CR>
+nmap <Leader>s :setlocal spell! spelllang=en_gb<CR>
+
+
 "execute pathogen#infect()
 syntax on
 filetype plugin indent on
@@ -120,9 +131,9 @@ let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=1
 let g:syntastic_ignore_files=['.vim$']
 if has('unix')
-  let g:syntastic_error_symbol='â~X~E'
+  let g:syntastic_error_symbol='âœ—'
   let g:syntastic_style_error_symbol='>'
-  let g:syntastic_warning_symbol='â~Z| '
+  let g:syntastic_warning_symbol='âš '
   let g:syntastic_style_warning_symbol='>'
 else
   let g:syntastic_error_symbol='!'
@@ -131,6 +142,7 @@ else
   let g:syntastic_style_warning_symbol='>'
 endif
 
+let g:syntastic_javascript_checkers=['jshint']
 
 set foldlevelstart=1
 set foldmethod=syntax
