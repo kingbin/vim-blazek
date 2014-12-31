@@ -23,6 +23,12 @@ nmap <Right> >>
 vmap <Left> <gv
 vmap <Right> >gv
 
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+
 " Highlight end of line space red
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$\|\t/
@@ -109,6 +115,56 @@ map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 
+" sets the working directory to the current file's directory:
+autocmd BufEnter * lcd %:p:h
+" source: http://superuser.com/questions/195022/vim-how-to-synchronize-nerdtree-with-current-opened-tab-file-path
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-airline
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:airline_powerline_fonts = 1
+"let g:airline_theme = 'powerlineish'
+"let g:airline#extensions#tabline#enabled = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDtree
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F1> :NERDTreeToggle<CR>
+" open Nerd Tree in folder of file in active buffer
+map <Leader>nt :NERDTree %:p:h<CR>
+" source: http://stackoverflow.com/questions/5800840/nerdtree-load-particular-directory-automatically
+
+" customize colours colors theme highlighting
+" hi Directory guifg=#96CBFE guibg=#00ff00 ctermfg=red
+" source: http://www.ur-ban.com/blog/2011/04/01/nerdtree-directory-colours/
+" hi treeDir guifg=#ff0000 guibg=#00ff00 ctermfg=red
+
+" let loaded_nerd_tree = 1
+let NERDChristmasTree = 0
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', 'blue', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+" source: https://github.com/scrooloose/nerdtree/issues/201#issuecomment-9954740
+
+
+
 
 
 "set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l/%L,%c%V%)\ %P
@@ -118,7 +174,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 "hide buffers when not displayed
 set hidden
 
-let g:statline_fugitive = 1
+"let g:statline_fugitive = 1
 
 "set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
