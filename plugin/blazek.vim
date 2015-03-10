@@ -119,26 +119,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 autocmd BufEnter * lcd %:p:h
 " source: http://superuser.com/questions/195022/vim-how-to-synchronize-nerdtree-with-current-opened-tab-file-path
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-airline
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set ttimeoutlen=50
-let g:airline_powerline_fonts = 1
-"let g:airline_theme = 'powerlineish'
-let g:airline_theme = 'base16'
-let g:airline#extensions#hunks#enabled=1
-let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#branch#empty_message = 'NA'
-let g:airline#extensions#tabline#enabled = 1
-
-
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
