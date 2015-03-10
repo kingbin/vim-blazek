@@ -122,9 +122,24 @@ autocmd BufEnter * lcd %:p:h
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-airline
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:airline_powerline_fonts = 1
+set ttimeoutlen=50
+let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'powerlineish'
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'base16'
+let g:airline#extensions#hunks#enabled=1
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#branch#empty_message = 'NA'
+let g:airline#extensions#tabline#enabled = 1
+
+
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDtree
@@ -207,5 +222,25 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 "set nofoldenable
+
+au FileType javascript call JavaScriptFold()
+let g:used_javascript_libs = 'underscore,angularjs,jasmine,handlebars'
+
+
+"undo tree
+nnoremap <F6> :UndotreeToggle<cr>
+
+let g:undotree_WindowLayout = 3
+
+" if set, let undotree window get focus after being opened, otherwise
+" focus will stay in current window.
+let g:undotree_SetFocusWhenToggle = 0
+
+" Highlight changed text
+let g:undotree_HighlightChangedText = 1
+
+
+
+
 
 
