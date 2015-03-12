@@ -183,9 +183,9 @@ let g:syntastic_quiet_warnings=1
 let g:syntastic_ignore_files=['.vim$']
 if has('unix')
   let g:syntastic_error_symbol='✗'
-  let g:syntastic_style_error_symbol='>'
+  let g:syntastic_style_error_symbol='➤'
   let g:syntastic_warning_symbol='⚠'
-  let g:syntastic_style_warning_symbol='>'
+  let g:syntastic_style_warning_symbol='➤'
 else
   let g:syntastic_error_symbol='!'
   let g:syntastic_style_error_symbol='>'
@@ -194,6 +194,37 @@ else
 endif
 
 let g:syntastic_javascript_checkers=['jshint']
+
+function s:find_jshintrc(dir)
+    let l:found = globpath(a:dir, '.jshintrc')
+    if filereadable(l:found)
+        return l:found
+    endif
+
+    let l:parent = fnamemodify(a:dir, ':h')
+    if l:parent != a:dir
+        return s:find_jshintrc(l:parent)
+    endif
+
+    return "~/.jshintrc"
+endfunction
+
+function UpdateJsHintConf()
+    let l:dir = expand('%:p:h')
+    let l:jshintrc = s:find_jshintrc(l:dir)
+    let g:syntastic_javascript_jshint_args = '--config '.l:jshintrc
+endfunction
+
+au BufEnter * call UpdateJsHintConf()
+let g:syntastic_always_populate_loc_list=1
+"let g:syntastic_auto_loc_list=1
+let g:syntastic_debug = 0
+
+
+
+
+
+
 
 set foldlevelstart=1
 set foldmethod=syntax
